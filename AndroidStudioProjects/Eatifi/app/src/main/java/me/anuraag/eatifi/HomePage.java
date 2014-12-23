@@ -98,7 +98,7 @@ public class HomePage extends Activity {
             public void onClick(View v) {
                 doLocation();
                 RequestTask task = new RequestTask();
-                String path ="http://api.yelp.com/v2/search?term=food&radius_filter=40000&location=Ashburn,VA";
+                String path ="http://api.yelp.com/v2/search?term=food&radius_filter=40000&ll=" + curLoc.getLatitude() + "," + curLoc.getLongitude();
                 String[] hello = new String[1];
                 hello[0] = path;
                 task.execute(hello);
@@ -121,7 +121,8 @@ public class HomePage extends Activity {
         locationListener = new LocationListener() {
             public void onLocationChanged(Location location) {
                 // Called when a new location is found by the network location provider.
-                displayLocation(location);
+//                displayLocation(location);
+
                 curLoc = location;
                 Log.i("Coordinates",curLoc.toString());
                 //doTimeCheck();
@@ -308,49 +309,5 @@ public class HomePage extends Activity {
 //            Log.i("Result",result);
         }
     }
-    public class GecodingTask extends AsyncTask<String, String, String> {
-        private TextView myView;
-        private String s;
 
-        @Override
-        protected String doInBackground(String... uri) {
-            HttpClient httpclient = new DefaultHttpClient();
-            HttpResponse response;
-            String responseString = null;
-            try {
-                response = httpclient.execute(new HttpGet(uri[0]));
-                StatusLine statusLine = response.getStatusLine();
-                if (statusLine.getStatusCode() == HttpStatus.SC_OK) {
-                    ByteArrayOutputStream out = new ByteArrayOutputStream();
-                    response.getEntity().writeTo(out);
-                    out.close();
-                    responseString = out.toString();
-                } else {
-                    //Closes the connection.
-                    response.getEntity().getContent().close();
-                    throw new IOException(statusLine.getReasonPhrase());
-                }
-            } catch (ClientProtocolException e) {
-                //TODO Handle problems..
-            } catch (IOException e) {
-                //TODO Handle problems..
-            }
-
-//                Log.i("", responseString);
-            return responseString;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            super.onPostExecute(result);
-//            Log.i("Response",result);
-
-            try {
-                JSONObject resulst = new JSONObject(result);
-
-            } catch (JSONException j) {
-                Log.i("Issue", j.toString());
-            }
-        }
-    }
 }
