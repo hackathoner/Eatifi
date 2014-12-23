@@ -135,25 +135,27 @@ public class HomePage extends Activity {
         locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
     }
     public void displayLocation(Location l){
-         lon = 0;
-         lat = 0;
-        Geocoder gcd = new Geocoder(this, Locale.getDefault());
-        try {
-            List<Address> addresses = gcd.getFromLocation(l.getLatitude(), l.getLongitude(), 1);
-            if (addresses.size() > 0) {
-                loc = addresses.get(0).getPostalCode();
-                lon = addresses.get(0).getLongitude();
-                lat = addresses.get(0).getLatitude();
-            }
-            Log.i("Long",lon + "");
-            Log.i("Lat", lat + "");
-            Log.i("Location",loc);
-        }catch(IOException e){
-            Log.i(e.toString(),e.toString());
-        }catch(NullPointerException e){
-            Log.i(e.toString(),e.toString());
 
-        }
+
+//         lon = 0;
+//         lat = 0;
+//        Geocoder gcd = new Geocoder(this, Locale.getDefault());
+//        try {
+//            List<Address> addresses = gcd.getFromLocation(l.getLatitude(), l.getLongitude(), 1);
+//            if (addresses.size() > 0) {
+//                loc = addresses.get(0).getPostalCode();
+//                lon = addresses.get(0).getLongitude();
+//                lat = addresses.get(0).getLatitude();
+//            }
+//            Log.i("Long",lon + "");
+//            Log.i("Lat", lat + "");
+//            Log.i("Location",loc);
+//        }catch(IOException e){
+//            Log.i(e.toString(),e.toString());
+//        }catch(NullPointerException e){
+//            Log.i(e.toString(),e.toString());
+//
+//        }
 
 
     }
