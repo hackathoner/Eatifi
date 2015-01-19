@@ -77,6 +77,7 @@ public class HomePage extends Activity {
     private SimpleCardStackAdapter adapter;
     private LocationManager locationManager;
     private String loc;
+    private int placeholder = 0;
     private LocationListener locationListener;
     private Location curLoc;
     @Override
@@ -263,8 +264,16 @@ public class HomePage extends Activity {
                 JSONArray listOfPlaces = results.getJSONArray("businesses");
                 for(int x = 0; x < 20; x++){
 
+                    final String myurl = listOfPlaces.getJSONObject(x).getString("mobile_url");
                     card1 = new CardModel(listOfPlaces.getJSONObject(x).getString("name"), "Description goes here", getResources().getDrawable(R.drawable.ic_launcher));
-
+                    Uri webpage = Uri.parse(myurl);
+                    final Intent webIntent = new Intent(Intent.ACTION_VIEW, webpage);
+                    card1.setOnClickListener(new CardModel.OnClickListener() {
+                        @Override
+                        public void OnClickListener() {
+                            startActivity(webIntent);
+                        }
+                    });
                     adapter.add(card1);
                 }
             }catch(JSONException j){

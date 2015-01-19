@@ -1,0 +1,28 @@
+doctype html
+html
+	head
+		if hideHeader == null
+			include header		
+		block head
+			block title
+				title Program Name
+			block meta
+				meta(name='description', content='')
+				meta(name='keywords', content='')
+				meta(name='viewport'  content="width=device-width, initial-scale=1")
+			link(href='http://maxcdn.bootstrapcdn.com/bootswatch/3.3.1/sandstone/bootstrap.min.css', rel='stylesheet')
+			link(rel='stylesheet', href='/libraries/prism/prism.css')
+			link(rel='stylesheet', href='/libraries/jsonView/jquery.jsonview.css')
+			link(rel='stylesheet', href='/css/main.css')
+			script(src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js')
+			script(src='/libraries/prism/prism.js')
+			script(src='/libraries/jsonView/jquery.jsonview.js')
+			script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js')
+			script(src='/scripts/scripts.js')
+
+	body
+
+		block content
+
+	footer
+		script(src='/scripts/analytics.js')
